@@ -1,4 +1,5 @@
-
+-- ---------------------------------------------------------------------------------------------------------------------
+-- receta de produccion
 DELIMITER //
 CREATE PROCEDURE recetaChispas(
     IN v_cantEquivalente	INT
@@ -437,6 +438,367 @@ BEGIN
     UPDATE inventario
     SET cantidadActual = cantidadActual-v_cantidadActual
     WHERE idGalleta = v_idGalleta;
+	
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+-- ------------------------------------------------------------------------------------------------------------
+-- Quitar de ventas
+DELIMITER //
+CREATE PROCEDURE quitarChispas(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 1)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/6));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*165) + (v_cajaMedio*83)) WHERE idGalleta = 1;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarMantequilla(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 2)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/2));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*500) + (v_cajaMedio*250)) WHERE idGalleta = 2;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarAvena(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 3)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/5));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*200) + (v_cajaMedio*100)) WHERE idGalleta = 3;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarMacaron(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 4)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/6));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*165) + (v_cajaMedio*83)) WHERE idGalleta = 4;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarJengibre(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 5)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/4));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*250) + (v_cajaMedio*125)) WHERE idGalleta = 5;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarPolvoron(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 6)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/3));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*333) + (v_cajaMedio*167)) WHERE idGalleta = 6;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarPastisetas(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 7)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/2));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*500) + (v_cajaMedio*250)) WHERE idGalleta = 7;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarNuez(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 8)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/4));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*250) + (v_cajaMedio*125)) WHERE idGalleta = 8;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarCoco(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 9)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/4));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*250) + (v_cajaMedio*125)) WHERE idGalleta = 9;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarAlmendra(
+    IN v_moneda		DOUBLE,
+    IN v_gramaje	DOUBLE,
+    IN v_pieza		INT,
+    IN v_cajaMedio	DOUBLE,
+    IN v_cajaKilo	DOUBLE
+)
+BEGIN
+	DECLARE monedaQ INT;
+    DECLARE gramajeQ INT;
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_moneda <> 0 THEN
+		SET monedaQ = ROUND((v_moneda/(SELECT precioActual from inventario WHERE idGalleta = 10)));
+	ELSE 
+		SET monedaQ = 0;
+    END IF;
+    IF v_gramaje <> 0 THEN
+		SET gramajeQ = ROUND((v_gramaje/3));
+	ELSE 
+		SET gramajeQ = 0;
+    END IF;
+    UPDATE inventario SET cantidadActual = cantidadActual - (monedaQ + gramajeQ + v_pieza + (v_cajaKilo*333) + (v_cajaMedio*167)) WHERE idGalleta = 10;
+    
+    COMMIT;
+    SET autocommit = 1;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE quitarExistencias(
+	IN v_idGalleta		INT,
+    IN v_moneda			DOUBLE,
+    IN v_gramaje		DOUBLE,
+    IN v_pieza			INT,
+    IN v_cajaMedio		DOUBLE,
+    IN v_cajaKilo		DOUBLE
+)
+BEGIN
+	SET autocommit = 0;
+    START TRANSACTION;
+    
+    IF v_idGalleta = 1 THEN
+		CALL quitarChispas(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+	IF v_idGalleta = 2 THEN
+		CALL quitarMantequilla(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+    IF v_idGalleta = 3 THEN
+		CALL quitarAvena(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+	IF v_idGalleta = 4 THEN
+		CALL quitarMacaron(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+    IF v_idGalleta = 5 THEN
+		CALL quitarJengibre(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+	IF v_idGalleta = 6 THEN
+		CALL quitarPolvoron(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+    IF v_idGalleta = 7 THEN
+		CALL quitarPastisetas(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+	IF v_idGalleta = 8 THEN
+		CALL quitarNuez(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+    IF v_idGalleta = 9 THEN
+		CALL quitarCoco(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
+	IF v_idGalleta = 10 THEN
+		CALL quitarAlmendra(v_moneda, v_gramaje, v_pieza, v_cajaMedio, v_cajaKilo);
+    END IF;
 	
     COMMIT;
     SET autocommit = 1;
