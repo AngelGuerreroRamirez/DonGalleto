@@ -50,7 +50,7 @@ DELIMITER ;
  costo de produccion 2.33 cada una
  peso 2 gramos cada una
  1 kilo 500 galletas 1250 caja
- 1/2 kilo 250 galletas 250 625 caja
+ 1/2 kilo 250 galletas 625 caja
 */
 DELIMITER //
 CREATE PROCEDURE recetaMantequilla(
