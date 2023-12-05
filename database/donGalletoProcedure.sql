@@ -222,6 +222,12 @@ CREATE VIEW vista_inventario AS(
     FROM inventario
 );
 
+CREATE VIEW vista_ventaGalleta AS(
+	SELECT v.idVenta,idGalleta, moneda, gramaje, pieza, cajaMedio, cajaKilo, total, v.fecha
+	FROM ventaGalleta vg
+	INNER JOIN venta v ON v.idVenta = vg.idVenta
+);
+
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Materia prima
 DELIMITER //
