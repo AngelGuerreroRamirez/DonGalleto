@@ -50,6 +50,16 @@ public class ControllerVentaGalleta {
                         + dvg.getListVG().get(i).getTotal() + ")";
                 stmt.execute(query3);
             }
+            //Probar
+            for (int i = 0; i < dvg.getListVG().size(); i++) {
+                String query4 = "CALL quitarExistencias(" + dvg.getListVG().get(i).getInventario().getIdGalleta() + " , " 
+                        + dvg.getListVG().get(i).getMoneda() + ", " 
+                        + dvg.getListVG().get(i).getGramaje() + ", "  
+                        + dvg.getListVG().get(i).getPieza() + ", "
+                        + dvg.getListVG().get(i).getCajaMedio() + ", "
+                        + dvg.getListVG().get(i).getCajaKilo() + ")";
+                stmt.execute(query4);
+            }
             
             conn.commit();
             conn.setAutoCommit(true);
